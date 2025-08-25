@@ -1,2 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme {
+  --font-plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
+  --font-macondo: "Macondo", cursive;
+}

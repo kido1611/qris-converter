@@ -1,6 +1,19 @@
+<script setup lang="ts">
+useHead({
+  htmlAttrs: {
+    class: "dark scroll-smooth",
+  },
+  bodyAttrs: {
+    class: "font-plus-jakarta-sans",
+  },
+});
+</script>
+
 <template>
-  <div>
+  <UApp>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>
