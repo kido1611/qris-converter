@@ -2,12 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: [
-    "@nuxt/ui",
-    "@vueuse/nuxt",
-    "nuxt-og-image",
-    "@nuxthub/core",
-  ],
+  modules: ["@nuxt/ui", "@vueuse/nuxt", "nuxt-og-image"],
   css: ["~/assets/css/main.css"],
   vite: {
     experimental: {
