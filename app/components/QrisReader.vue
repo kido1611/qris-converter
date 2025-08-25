@@ -27,15 +27,7 @@ async function onSubmitScanner(code: string) {
         class="w-48 text-center self-start sm:self-center text-muted text-sm sm:w-auto"
         >atau</span
       >
-      <UButton
-        type="button"
-        variant="subtle"
-        icon="tabler:camera"
-        class="self-start sm:self-center w-48 justify-center sm:w-auto"
-        color="neutral"
-        disabled
-        >Gunakan Kamera</UButton
-      >
+      <LazyQrisCamera @success="onSubmitScanner" />
     </div>
   </CardSection>
 </template>
