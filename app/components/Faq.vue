@@ -5,7 +5,7 @@ const items: AccordionItem[] = [
   {
     label: "Bagaimana cara menggunakannya?",
     content:
-      "Caranya cukup mudah, scan/unggah gambar QRIS anda, lalu ubah nominal transaksi untuk membuat QRIS menjadi dinamis.",
+      "Caranya cukup mudah, scan/unggah gambar QRIS anda, lalu ubah nominal transaksi untuk membuat QRIS menjadi dinamis. Gambar QRIS dinamis akan muncul beserta nama merchant dan nominal transaksi (jika nominal transaksi > 0).",
   },
   {
     label: "Apakah aplikasi ini gratis?",
@@ -23,8 +23,13 @@ const items: AccordionItem[] = [
   {
     label:
       "Saya ingin mengintegrasikan gambar QRIS ini di aplikasi kita. Apakah bisa?",
+    content: "Bisa, cek bagian API untuk mengetahui cara aksesnya.",
+  },
+  {
+    label:
+      "Saya coba iseng mengubah nominal transaksi pada generated QRIS dinamis (contoh mengubah QRIS pada pembayaran e-commerce atau media sawer online). Apa yang akan terjadi?",
     content:
-      "Untuk saat ini masih belum bisa. REST API untuk membuat gambar masih dalam tahap pengembangan.",
+      "Saya belum pernah mencobanya. Menurut saya akan terjadi 2 hal: 1). Transaksi gagal; 2). Uang anda hilang.",
   },
 ];
 </script>
