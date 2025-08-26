@@ -37,6 +37,9 @@
   "pnpm": {
     "overrides": {
       "vite": "npm:rolldown-vite@latest"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "canvas"
+    ]
   }
 }
