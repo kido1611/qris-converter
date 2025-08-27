@@ -3,6 +3,7 @@ const { code } = defineProps<{
   code?: string;
 }>();
 
+const isLoading = ref<boolean>(false);
 const qrisImage = shallowRef("");
 
 function download() {
@@ -18,7 +19,9 @@ function download() {
 
 watchEffect(async () => {
   if (code) {
+    isLoading.value = true;
     qrisImage.value = await generateQrisImage(code);
+    isLoading.value = false;
   }
 });
 </script>
@@ -26,7 +29,8 @@ watchEffect(async () => {
 <template>
   <UCard variant="subtle">
     <div class="flex flex-col">
-      <div class="flex justify-center">
+      <USkeleton v-if="isLoading" class="aspect-5/8" />
+      <div v-else class="flex justify-center aspect-5/8">
         <img
           alt="QRIS image"
           v-if="code"
