@@ -32,6 +32,7 @@
     "@iconify-json/lucide": "^1.2.63",
     "@iconify-json/tabler": "^1.2.22",
     "@iconify-json/vscode-icons": "^1.2.29",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/qrcode": "^1.5.5"
   },
   "pnpm": {
