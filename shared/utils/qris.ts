@@ -1,5 +1,3 @@
-import slugify from "slugify";
-
 type PointOfMethod = "STATIC" | "DYNAMIC";
 
 interface Tlv {

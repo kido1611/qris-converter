@@ -28,3 +28,10 @@ export const UpdateTransactionAmountSchema = v.object({
 export type UpdateTransactionAmountType = v.InferOutput<
   typeof UpdateTransactionAmountSchema
 >;
+
+export const UpdateTransactionAmountServerSchema = v.object({
+  "transaction-amount": v.pipe(
+    v.union([v.number(), v.pipe(v.string(), v.transform(Number), v.number())]),
+    v.minValue(1),
+  ),
+});
