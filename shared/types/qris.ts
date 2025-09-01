@@ -35,3 +35,13 @@ export const UpdateTransactionAmountServerSchema = v.object({
     v.minValue(1),
   ),
 });
+
+export const QrisRouteParameterSchema = v.object({
+  qris: v.pipe(
+    v.string(),
+    v.base64(),
+    v.transform((input) => Buffer.from(input, "base64").toString()),
+    v.string(),
+    QrisSchema,
+  ),
+});

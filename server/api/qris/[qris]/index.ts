@@ -11,25 +11,15 @@ import { createCanvas, registerFont } from "canvas";
 import { UpdateTransactionAmountServerSchema } from "~~/shared/types/qris";
 
 export default defineEventHandler(async (event: H3Event) => {
-  const rawPath = getRouterParam(event, "qris");
-  if (!rawPath) {
-    setResponseStatus(event, 404);
+  const result = await getValidatedRouterParams(event, (parameters) =>
+    v.safeParse(QrisRouteParameterSchema, parameters),
+  );
+
+  if (!result.success) {
+    setResponseStatus(event, 422);
     return {
-      message: "Invalid path",
-    };
-  }
-
-  // validate rawPath with v.base64
-
-  const qrisRaw = Buffer.from(rawPath, "base64").toString();
-  const validateResultRouteParam = v.safeParse(CreateSchema, {
-    code: qrisRaw,
-  });
-
-  if (!validateResultRouteParam.success) {
-    setResponseStatus(event, 400);
-    return {
-      message: validateResultRouteParam.issues[0].message,
+      error: true,
+      message: "Encoded QRIS/kode QRIS salah.",
     };
   }
 
@@ -41,13 +31,17 @@ export default defineEventHandler(async (event: H3Event) => {
   if (!validatedResultQueries.success) {
     setResponseStatus(event, 400);
     return {
+      error: true,
       message: "Kueri `transaction-amount` salah atau belum diisi.",
     };
   }
 
   const transactionAmount = validatedResultQueries.output["transaction-amount"];
 
-  const canvas = await generateQrisImageServer(qrisRaw, transactionAmount);
+  const canvas = await generateQrisImageServer(
+    result.output.qris,
+    transactionAmount,
+  );
 
   return canvas.createPNGStream();
 });
