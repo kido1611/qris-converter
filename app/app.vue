@@ -2,6 +2,7 @@
 useHead({
   htmlAttrs: {
     class: "dark scroll-smooth",
+    lang: "id",
   },
   bodyAttrs: {
     class: "font-plus-jakarta-sans",
