@@ -83,7 +83,7 @@ function getFontPath(fileName: string): string {
   }
 
   if (import.meta.preset === "vercel") {
-    return path.join(process.cwd(), "fonts", fileName);
+    return path.join(process.cwd(), "public", "fonts", fileName);
   }
 
   if (import.meta.preset === "node-server") {
