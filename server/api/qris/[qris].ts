@@ -5,8 +5,9 @@ import {
   drawImage,
 } from "@@/shared/utils/qris-image";
 import * as v from "valibot";
+import path from "node:path";
 
-import { createCanvas } from "canvas";
+import { createCanvas, registerFont } from "canvas";
 import { UpdateTransactionAmountServerSchema } from "~~/shared/types/qris";
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -17,6 +18,8 @@ export default defineEventHandler(async (event: H3Event) => {
       message: "Invalid path",
     };
   }
+
+  // validate rawPath with v.base64
 
   const qrisRaw = Buffer.from(rawPath, "base64").toString();
   const validateResultRouteParam = v.safeParse(CreateSchema, {
@@ -50,10 +53,42 @@ export default defineEventHandler(async (event: H3Event) => {
 });
 
 export async function generateQrisImageServer(code: string, amount: number) {
+  registerLocalFont("PlusJakartaSans-Bold.ttf", "Plus Jakarta sans", "700");
+  registerLocalFont("PlusJakartaSans-Regular.ttf", "Plus Jakarta sans", "400");
+
   const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   const ctx = canvas.getContext("2d");
 
   await drawImage(ctx, code, amount);
 
   return canvas;
+}
+
+function registerLocalFont(
+  fileName: string,
+  familyName: string,
+  fontWeight: string,
+) {
+  const path = getFontPath(fileName);
+
+  registerFont(path, {
+    family: familyName,
+    weight: fontWeight,
+  });
+}
+
+function getFontPath(fileName: string): string {
+  if (import.meta.dev) {
+    return path.join(process.cwd(), "public", "fonts", fileName);
+  }
+
+  if (import.meta.preset === "vercel") {
+    return path.join(process.cwd(), "static", "fonts", fileName);
+  }
+
+  if (import.meta.preset === "node-server") {
+    return path.join(process.cwd(), "public", "fonts", fileName);
+  }
+
+  throw Error("Not supported preset");
 }
