@@ -53,6 +53,6 @@ useHead({
 
     <LazyApiSection />
 
-    <LazyFaq hydrate-on-visible />
+    <LazyFaqSection hydrate-on-visible />
   </div>
 </template>

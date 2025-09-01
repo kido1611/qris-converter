@@ -5,7 +5,7 @@ import {
   type UpdateTransactionAmountType,
 } from "~~/shared/types/qris";
 
-const { amount } = defineProps<{ amount?: number }>();
+const { amount = 0 } = defineProps<{ amount?: number }>();
 const emit = defineEmits<{
   submit: [amount: number];
 }>();
@@ -61,8 +61,8 @@ watch(isVisible, async (newValue) => {
       <UForm
         :schema="UpdateTransactionAmountSchema"
         :state
-        @submit.prevent="onSubmit"
         class="flex flex-col gap-y-5"
+        @submit.prevent="onSubmit"
       >
         <UFormField
           label="Nominal"
@@ -71,8 +71,8 @@ watch(isVisible, async (newValue) => {
         >
           <UInput
             ref="input-amount"
-            type="number"
             v-model="state.amount"
+            type="number"
             name="amount"
             :min="0"
           />

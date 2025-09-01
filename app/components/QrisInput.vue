@@ -16,7 +16,7 @@ function onSubmit(event: FormSubmitEvent<CreateType>) {
 <template>
   <UForm :schema="CreateSchema" :state @submit.prevent="onSubmit">
     <UFormField label="Kode QRIS" required name="code">
-      <UInput type="text" required v-model="state.code" name="code" />
+      <UInput v-model="state.code" type="text" required name="code" />
     </UFormField>
 
     <UButton type="submit">Cek</UButton>

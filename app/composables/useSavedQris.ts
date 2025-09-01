@@ -23,17 +23,9 @@ export function useSavedQris() {
   }
 
   function removeQris(code: string) {
-    let selectedKey = undefined;
-    for (const [key, value] of Object.entries(savedQrisList.value)) {
-      if (value.code === code) {
-        selectedKey = key;
-        break;
-      }
-    }
-
-    if (selectedKey) {
-      delete savedQrisList.value[selectedKey];
-    }
+    const entries = Object.entries(savedQrisList.value);
+    const updatedEntries = entries.filter(([, value]) => value.code !== code);
+    savedQrisList.value = Object.fromEntries(updatedEntries);
   }
 
   return {

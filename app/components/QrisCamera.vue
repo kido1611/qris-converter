@@ -88,9 +88,9 @@ watch(isVisible, (newValue) => {
       </div>
       <QrcodeStream
         v-if="isVisible"
-        @error="onError"
         :constraints="selectedConstraints"
         :formats="['qr_code']"
+        @error="onError"
         @detect="onDetect"
         @camera-on="onCameraReady"
       />

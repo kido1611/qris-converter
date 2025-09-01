@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { code } = defineProps<{
+const { code = undefined } = defineProps<{
   code?: string;
 }>();
 
@@ -51,8 +51,8 @@ onMounted(async () => {
       <USkeleton v-if="isLoading" class="aspect-5/8" />
       <div v-else class="flex justify-center aspect-5/8">
         <img
-          alt="QRIS image"
           v-if="code"
+          alt="QRIS image"
           :src="qrisImage"
           class="w-60 min-h-60 rounded-lg"
         />

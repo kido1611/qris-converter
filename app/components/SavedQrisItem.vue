@@ -36,7 +36,7 @@ async function updateQris(code: string) {
       width: 512,
       margin: 4,
     });
-  } catch (error: any) {
+  } catch {
     removeQris(code);
   }
 }
@@ -64,7 +64,6 @@ onMounted(async () => {
           </p>
 
           <UButton
-            @click="changeQris"
             class="mt-3 self-start"
             icon="tabler:replace"
             size="lg"
@@ -79,6 +78,7 @@ onMounted(async () => {
               selectedQris?.getNationalMerchantId() ===
               qris.getNationalMerchantId()
             "
+            @click="changeQris"
             >Pakai</UButton
           >
         </div>

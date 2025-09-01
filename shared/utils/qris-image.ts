@@ -1,6 +1,6 @@
 import {
-  CanvasRenderingContext2D as CanvasContextServer,
-  Image as CanvasImage,
+  type CanvasRenderingContext2D as CanvasContextServer,
+  type Image as CanvasImage,
   loadImage,
 } from "canvas";
 import QrCode from "qrcode";
@@ -38,7 +38,7 @@ export async function drawImage(
 
   // ------------------------------------------------------------- QRIS Logo
   const qrisLogoPosX = CANVAS_WIDTH / 2 - qrisLogoImage.width / 2;
-  // @ts-expect-error
+  // @ts-expect-error error because joining context from canvas api and node-canvas
   ctx.drawImage(qrisLogoImage, qrisLogoPosX, latestHeightComponent);
   latestHeightComponent +=
     qrisLogoImage.height + SEPARATOR_HEIGHT + SEPARATOR_HEIGHT / 2;
@@ -71,7 +71,7 @@ export async function drawImage(
   // ------------------------------------------------------------- QRIS Image
   const qrisImage = await createImage(qrisImageSource);
   const qrisPosX = CANVAS_WIDTH / 2 - qrisImage.width / 2;
-  // @ts-expect-error
+  // @ts-expect-error error because joining context from canvas api and node-canvas
   ctx.drawImage(qrisImage, qrisPosX, latestHeightComponent);
 
   latestHeightComponent =
