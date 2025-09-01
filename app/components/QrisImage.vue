@@ -17,11 +17,30 @@ function download() {
   a.click();
 }
 
-watchEffect(async () => {
-  if (code) {
+watch(
+  () => code,
+  async (newValue, oldValue) => {
+    if (newValue && newValue !== oldValue) {
+      loadQris(newValue);
+    }
+  },
+);
+
+async function loadQris(code: string) {
+  if (!qrisImage.value) {
     isLoading.value = true;
-    qrisImage.value = await generateQrisImage(code);
+  }
+
+  qrisImage.value = await generateQrisImage(code);
+
+  if (isLoading.value) {
     isLoading.value = false;
+  }
+}
+
+onMounted(async () => {
+  if (code) {
+    await loadQris(code);
   }
 });
 </script>
