@@ -7,15 +7,20 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint:oxlint": "oxlint .",
+    "lint:eslint": "eslint .",
+    "lint": "run-s lint:oxlint lint:eslint"
   },
   "dependencies": {
+    "@nuxt/eslint": "1.9.0",
     "@nuxt/ui": "4.0.0-alpha.0",
     "@unhead/vue": "^2.0.14",
     "@vueuse/core": "^13.7.0",
     "@vueuse/nuxt": "13.7.0",
     "barcode-detector": "^3.0.5",
     "canvas": "^3.2.0",
+    "eslint": "^9.34.0",
     "nuxt": "^4.0.3",
     "nuxt-og-image": "5.1.9",
     "qrcode": "^1.5.4",
@@ -33,7 +38,12 @@
     "@iconify-json/tabler": "^1.2.22",
     "@iconify-json/vscode-icons": "^1.2.29",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/qrcode": "^1.5.5"
+    "@types/qrcode": "^1.5.5",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "eslint-plugin-oxlint": "^1.14.0",
+    "npm-run-all2": "^8.0.4",
+    "oxlint": "^1.14.0",
+    "typescript": "^5.9.2"
   },
   "pnpm": {
     "overrides": {
