@@ -49,12 +49,12 @@ onMounted(async () => {
   <UCard variant="subtle">
     <div class="flex flex-col">
       <USkeleton v-if="isLoading" class="aspect-5/8" />
-      <div v-else class="flex justify-center aspect-5/8">
+      <div v-else class="flex justify-center">
         <img
           v-if="code"
           alt="QRIS image"
           :src="qrisImage"
-          class="w-60 min-h-60 rounded-lg"
+          class="w-60 min-h-60 aspect-5/8 rounded-lg"
         />
       </div>
 
