@@ -28,10 +28,12 @@ const encodedQris = computed(() => {
         <li>
           <p>
             Default
-            <code
+            <code class="mr-2"
               >/api/qris/[encoded qris]?transaction-amount=[nominal
               transaksi]</code
             >
+            <UBadge class="mr-2" color="warning" variant="subtle">WIP</UBadge>
+            <UBadge class="" color="error" variant="subtle">Need Help</UBadge>
           </p>
           <p>
             Output dalam bentuk gambar QRIS lengkap dengan nama merchant, NMID,
@@ -46,9 +48,6 @@ const encodedQris = computed(() => {
               >/api/qris/[encoded qris]/qris-only?transaction-amount=[nominal
               transaksi]</code
             >
-            <UBadge class="ml-2" color="warning" variant="subtle"
-              >Coming Soon</UBadge
-            >
           </p>
           <p>Output dalam bentuk gambar QRIS saja.</p>
         </li>
@@ -59,9 +58,6 @@ const encodedQris = computed(() => {
             <code
               >/api/qris/[encoded qris]/raw?transaction-amount=[nominal
               transaksi]</code
-            >
-            <UBadge class="ml-2" color="warning" variant="subtle"
-              >Coming Soon</UBadge
             >
           </p>
           <p>
@@ -102,11 +98,21 @@ const encodedQris = computed(() => {
           Sehingga API bisa diakses dengan tautan berikut ini (dengan contoh
           nominal transaksi {{ currencyFormatter(transactionAmountExample) }}):
         </p>
-        <code class="break-all"
-          >/api/qris/{{ encodedQris }}?transaction-amount={{
-            transactionAmountExample
-          }}</code
-        >
+        <p>
+          <code class="break-all"
+            >/api/qris/{{ encodedQris }}/raw?transaction-amount={{
+              transactionAmountExample
+            }}</code
+          >
+        </p>
+        <p>Atau</p>
+        <p>
+          <code class="break-all"
+            >/api/qris/{{ encodedQris }}/qris-only?transaction-amount={{
+              transactionAmountExample
+            }}</code
+          >
+        </p>
       </template>
     </article>
   </CardSection>
